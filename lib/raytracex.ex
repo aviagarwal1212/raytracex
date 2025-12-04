@@ -10,6 +10,8 @@ defmodule Raytracex do
     IO.puts("P3\n#{@image_width} #{@image_height}\n255")
 
     for j <- 0..(@image_height - 1) do
+      IO.puts(:standard_error, "Scanlines remaining: #{@image_height - j}")
+
       for i <- 0..(@image_width - 1) do
         r = (i / (@image_width - 1)) |> normalize_color()
         g = (j / (@image_height - 1)) |> normalize_color()
