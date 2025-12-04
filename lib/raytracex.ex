@@ -6,6 +6,9 @@ defmodule Raytracex do
   @image_width 256
   @image_height 256
 
+  @doc """
+  Generates an image
+  """
   def run do
     IO.puts("P3\n#{@image_width} #{@image_height}\n255")
 
