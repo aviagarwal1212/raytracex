@@ -7,11 +7,12 @@ defmodule Ray do
     |> Vec3.add(ray.origin)
   end
 
-  def color(%Ray{direction: direction}) do
-    unit_direction = Vec3.unit_vector(direction)
-    a = 0.5 * (unit_direction.y + 1.0)
+  def hit_sphere?(%Ray{origin: origin, direction: direction} = _ray, %Vec3{} = center, radius) do
+    oc = Vec3.subtract(center, origin)
+    a = Vec3.dot(direction, direction)
+    b = -2 * Vec3.dot(direction, oc)
+    c = Vec3.dot(oc, oc) - radius * radius
 
-    Vec3.multiply(1 - a, %Vec3{x: 1.0, y: 1.0, z: 1.0})
-    |> Vec3.add(Vec3.multiply(a, %Vec3{x: 0.5, y: 0.7, z: 1.0}))
+    b * b - 4 * a * c >= 0
   end
 end
